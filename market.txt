@@ -1,0 +1,12 @@
+NEPSE  i
+MASDAQ . i 
+NYSE 
+DJI
+FTSE 100 . = i
+DAX . =  i
+CAC . =  i
+NIKKEI . = i
+HANG SENG .  i 
+SINGAPORE .  = i 
+SENSEX . 
+NIFTY FIFTY . i
