@@ -80,7 +80,7 @@ def new():
     point_div = nepse_div.find_all("div",class_=["current-index"])[0]
     point_change = nepse_div.find_all("div",class_=["point-change"])[0]
  
-    x.insert(0,{
+    x.insert(1,{
             "name":"NEPSE",
             "point":point_div.text.strip(),
             "change":point_change.text.strip()
@@ -109,7 +109,7 @@ def new():
         market_point = ''.join(market_point)
         if 'nasdaq' in market_name.lower():
             # print(name)      
-            x.insert(1,
+            x.insert(2,
             {
                     "name":"NASDAQ",
                     "point":market_point,
@@ -117,7 +117,7 @@ def new():
                 }
              )  
         if 'dow' in market_name.lower():
-            x.insert(2,
+            x.insert(3,
             {
                     "name":"DJI",
                     "point":market_point,
@@ -125,7 +125,7 @@ def new():
                 }
              )
         if 'ftse 100' in market_name.lower():
-            x.insert(3,
+            x.insert(4,
             {
                     "name":"FTSE 100",
                     "point":market_point,
@@ -133,7 +133,7 @@ def new():
                 }
              )  
         if 'dax' in market_name.lower():
-            x.insert(4,
+            x.insert(5,
             {
                     "name":"DAX",
                     "point":market_point,
@@ -141,7 +141,7 @@ def new():
                 }
              )  
         if 'cac' in market_name.lower():
-            x.insert(5,
+            x.insert(6,
             {
                     "name":"CAC 40",
                     "point":market_point,
@@ -149,7 +149,7 @@ def new():
                 }
              )  
         if 'nikkei' in market_name.lower():
-            x.insert(6,
+            x.insert(7,
             {
                     "name":"NIKKEI 225",
                     "point":market_point,
@@ -158,7 +158,7 @@ def new():
              )  
 
         if 'hang seng' in market_name.lower():
-            x.insert(7,
+            x.insert(8,
             {
                     "name":" HANG SENG",
                     "point":market_point,
@@ -174,7 +174,7 @@ def new():
         #         }
         #      ) 
         if 'sensex' in market_name.lower():
-            x.insert(8,
+            x.insert(9,
             {
                     "name":"SENSEX",
                     "point":market_point,
@@ -183,7 +183,7 @@ def new():
              )  
 
         if 'nifty' in market_name.lower():
-            x.insert(9,
+            x.insert(10,
             {
                     "name":"NIFTY FIFTY",
                     "point":market_point,
