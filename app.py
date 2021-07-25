@@ -80,10 +80,11 @@ def new():
     point_div = nepse_div.find_all("div",class_=["current-index"])[0]
     point_change = nepse_div.find_all("div",class_=["point-change"])[0]
  
-    x.insert(1,{
+    x.append({
             "name":"NEPSE",
             "point":point_div.text.strip(),
-            "change":point_change.text.strip()
+            "change":point_change.text.strip(),
+            "order":1
             })
     # for world
     URL = "https://www.investing.com/indices/major-indices"
@@ -109,88 +110,90 @@ def new():
         market_point = ''.join(market_point)
         if 'nasdaq' in market_name.lower():
             # print(name)      
-            x.insert(2,
+            x.append(
             {
                     "name":"NASDAQ",
                     "point":market_point,
-                    "change":market_change
+                    "change":market_change,
+                    "order":2
+
                 }
              )  
         if 'dow' in market_name.lower():
-            x.insert(3,
+            x.append(
             {
                     "name":"DJI",
                     "point":market_point,
-                    "change":market_change
+                    "change":market_change,
+                    "order":3
                 }
              )
         if 'ftse 100' in market_name.lower():
-            x.insert(4,
+            x.append(
             {
                     "name":"FTSE 100",
                     "point":market_point,
-                    "change":market_change
+                    "change":market_change,
+                    "order":4
                 }
              )  
         if 'dax' in market_name.lower():
-            x.insert(5,
+            x.append(
             {
                     "name":"DAX",
                     "point":market_point,
-                    "change":market_change
+                    "change":market_change,
+                    "order":5
                 }
              )  
         if 'cac' in market_name.lower():
-            x.insert(6,
+            x.append(
             {
                     "name":"CAC 40",
                     "point":market_point,
-                    "change":market_change
+                    "change":market_change,
+                    "order":6
                 }
              )  
         if 'nikkei' in market_name.lower():
-            x.insert(7,
+            x.append(
             {
                     "name":"NIKKEI 225",
                     "point":market_point,
-                    "change":market_change
+                    "change":market_change,
+                    "order":7
                 }
              )  
 
         if 'hang seng' in market_name.lower():
-            x.insert(8,
+            x.append(
             {
                     "name":" HANG SENG",
                     "point":market_point,
-                    "change":market_change
+                    "change":market_change,
+                    "order":8
                 }
-             )  
-        # if 'sensex' in market_name.lower():
-        #     x.insert(8,
-        #     {
-        #             "name":"SENSEX",
-        #             "point":market_point,
-        #             "change":market_change
-        #         }
-        #      ) 
+             )   
         if 'sensex' in market_name.lower():
-            x.insert(9,
+            x.append(
             {
                     "name":"SENSEX",
                     "point":market_point,
-                    "change":market_change
+                    "change":market_change,
+                    "order":9
                 }
              )  
 
         if 'nifty' in market_name.lower():
-            x.insert(10,
+            x.append(
             {
                     "name":"NIFTY FIFTY",
                     "point":market_point,
-                    "change":market_change
+                    "change":market_change,
+                    "order":10
                 }
              )  
-
+    x = sorted(x ,key=lambda item:item['order'])
     return jsonify(x)
 
 
