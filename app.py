@@ -79,8 +79,8 @@ def new():
     nepse_div = soup.find_all("div",class_=["pull-left", "banner-green", "banner-item"])[0]
     point_div = nepse_div.find_all("div",class_=["current-index"])[0]
     point_change = nepse_div.find_all("div",class_=["point-change"])[0]
-
-    x.append({
+ 
+    x.insert(0,{
             "name":"NEPSE",
             "point":point_div.text.strip(),
             "change":point_change.text.strip()
