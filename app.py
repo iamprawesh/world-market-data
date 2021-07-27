@@ -4,6 +4,7 @@ from bs4 import BeautifulSoup
 from flask_cors import CORS
 from datetime import datetime,timedelta
 import json
+import logging
 app = Flask(__name__)
 
 
@@ -155,13 +156,21 @@ def worldMarket():
 @app.route("/")
 def index():
     marketList = []
+    logging.basicConfig(filename="std.log", 
+					format='%(asctime)s %(message)s', 
+					filemode='a',
+                    level=logging.DEBUG
+                    ) 
+    # logger=logging.getLogger() 
+
     try:
         from os import path
-        ifexist = path.exists("data.json")
+        ifexist = path.exists("data.txt")
         if ifexist:
-            file1 = open("data.json","r+")
+            file1 = open("data.txt","r+")
             print("exist")
             data = json.load(file1)
+            print(data)
             current = datetime.now()
             expires_time = data[0]['expires_in']
             # expires_time = str(datetime.now() -  timedelta(hours=2))
@@ -178,23 +187,31 @@ def index():
             else:
                 # load from json file
                 marketList = data[1]
-                
 
         else:
-            file1 = open("data.json","w+")
+            file1 = open("data.txt","w+")
             nepse = nepseData()
             marketList.append(nepse)
             world = worldMarket()
             marketList += world 
             storeData(file1,marketList)
             print("not exist")
-
-            return jsonify(marketList)
-    except:
-        return jsonify([])
-    finally:
-        file1.close()
         return jsonify(marketList)
+
+
+    except Exception as e:
+        # logger = open("log.txt","a+"  )
+        # log = logging.error('Error out!')
+        # logger.WriteLines(str(datetime.now()) + ":" + str(log) +" "+e +"\n" )
+        # logger.write("\n")
+        marketList = []
+        # logging.error(traceback.format_exc())
+        # return jsonify([])
+    finally:
+        
+        file1.close()
+        # logger.close()
+        # return jsonify(marketList)
   
 
 
@@ -221,7 +238,7 @@ def index():
 
 
 def storeData(file1,data):
-    expires_in = datetime.now() +  timedelta(hours=2)
+    expires_in = datetime.now() +  timedelta(hours=1)
     # expires_in = plus3.strftime("%H:%M:%S")
     file1.write(json.dumps([{"expires_in":str(expires_in)},data]))
     file1.close()
@@ -360,7 +377,7 @@ def new():
 @app.route("/exp")
 def ExpiryTime():
     try:
-        file1 = open("data.json","r+")
+        file1 = open("data.txt","r+")
         data = json.load(file1)
         file1.close()
         return jsonify(data[0])
