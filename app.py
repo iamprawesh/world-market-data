@@ -11,14 +11,6 @@ app = Flask(__name__)
 CORS(app)
 
 
-# class User(db.Model):
-#     _id = db.Column("id",db.Integer, primary_key=True)
-#     # username = db.Column(db.String(80), unique=True, nullable=False)
-#     email = db.Column(db.String(120))
-
-#     def __repr__(self):
-#         return '<User %r>' % self.email
-
 def getHTML(url):
     page = requests.get(url)
 
@@ -211,39 +203,10 @@ def index():
 
 
     except Exception as e:
-        # logger = open("log.txt","a+"  )
-        # log = logging.error('Error out!')
-        # logger.WriteLines(str(datetime.now()) + ":" + str(log) +" "+e +"\n" )
-        # logger.write("\n")
+
         marketList = []
         print(e)
-        # logging.error(traceback.format_exc())
         return jsonify([])
-        # logger.close()
-        # return jsonify(marketList)
-  
-
-
-        
-    
-
-    # data = json.load(file1)
-
-    # if(data[0] )
-    # print(type(data))
-    # plus3 = datetime.now() +  timedelta(hours=2)
-    # if (plus3 < datetime.now()):
-    #     print("current time is bigger")
-    # expires_in = plus3.strftime("%H:%M:%S")
-    # # try:
-    
-    # file1.write(json.dumps([{"expires_in":expires_in},x]))
-    # file1.close()
-    # # except FileNotFoundError as error:
-    #     # print(error)
-    #     # print("rrr")
-
-    # return jsonify(x)
 
 
 def storeData(file1,data):
@@ -263,134 +226,6 @@ def newv2():
 
 
 
-# @app.route("/new")
-# def new():
-#     x = []
-
-#     # for nepal
-#     URL = "http://www.nepalstock.com/"
-#     page = requests.get(URL)
-
-#     soup = BeautifulSoup(page.content, "html.parser")
-#     nepse_div = soup.find_all("div",class_=["pull-left", "banner-green", "banner-item"])[0]
-#     point_div = nepse_div.find_all("div",class_=["current-index"])[0]
-#     point_change = nepse_div.find_all("div",class_=["point-change"])[0]
- 
-#     x.append({
-#             "name":"NEPSE",
-#             "point":point_div.text.strip(),
-#             "change":point_change.text.strip(),
-#             "order":1
-#             })
-#     # for world
-#     URL = "https://www.investing.com/indices/major-indices"
-#     page = requests.get(URL)
-
-#     soup = BeautifulSoup(page.content, "html.parser")
-#     # nifty_sensex = soup.find_all("div",class_=["txtmacmb","slick-slide", "slick-current", "slick-active"])
-#     # print(nifty_sensex.ul)
-#     y =  soup.find_all("tr", {"data-test":"price-row"})
-#     # soup.find("div", {"class" : "data-sitekey"}))
-#     # results = soup.find("div", class_="table-browser_table-browser-wrapper__2ynbE")
-#     # print(y.tbody)
-#     # print(len(y.tbody.tr))
-#     for i in y:
-#         # print(i.td[1].div.a)
-#         all_td = i.find_all("td")
-#         # name
-#         market_name = all_td[1].div.a.text.strip()
-#         market_point = all_td[2].text.strip(),
-#         market_change = all_td[5].text.strip(),
-
-#         market_change = ''.join(market_change)
-#         market_point = ''.join(market_point)
-#         if 'nasdaq' in market_name.lower():
-#             # print(name)      
-#             x.append(
-#             {
-#                     "name":"NASDAQ",
-#                     "point":market_point,
-#                     "change":market_change,
-#                     "order":2
-
-#                 }
-#              )  
-#         if 'dow' in market_name.lower():
-#             x.append(
-#             {
-#                     "name":"DJI",
-#                     "point":market_point,
-#                     "change":market_change,
-#                     "order":3
-#                 }
-#              )
-#         if 'ftse 100' in market_name.lower():
-#             x.append(
-#             {
-#                     "name":"FTSE 100",
-#                     "point":market_point,
-#                     "change":market_change,
-#                     "order":7
-#                 }
-#              )  
-#         if 'dax' in market_name.lower():
-#             x.append(
-#             {
-#                     "name":"DAX",
-#                     "point":market_point,
-#                     "change":market_change,
-#                     "order":8
-#                 }
-#              )  
-#         if 'cac' in market_name.lower():
-#             x.append(
-#             {
-#                     "name":"CAC 40",
-#                     "point":market_point,
-#                     "change":market_change,
-#                     "order":6
-#                 }
-#              )  
-#         if 'nikkei' in market_name.lower():
-#             x.append(
-#             {
-#                     "name":"NIKKEI 225",
-#                     "point":market_point,
-#                     "change":market_change,
-#                     "order":7
-#                 }
-#              )  
-
-#         if 'hang seng' in market_name.lower():
-#             x.append(
-#             {
-#                     "name":" HANG SENG",
-#                     "point":market_point,
-#                     "change":market_change,
-#                     "order":8
-#                 }
-#              )   
-#         if 'sensex' in market_name.lower():
-#             x.append(
-#             {
-#                     "name":"SENSEX",
-#                     "point":market_point,
-#                     "change":market_change,
-#                     "order":9
-#                 }
-#              )  
-
-#         if 'nifty' in market_name.lower():
-#             x.append(
-#             {
-#                     "name":"NIFTY FIFTY",
-#                     "point":market_point,
-#                     "change":market_change,
-#                     "order":10
-#                 }
-#              )  
-#     x = sorted(x ,key=lambda item:item['order'])
-#     return jsonify(x)
 
 
 @app.route("/exp")
@@ -404,24 +239,7 @@ def ExpiryTime():
         return jsonify(["some eror"])
     
 
-@app.route("/test")
-def Test():
-    now = datetime.now()
-    return render_template('my-form.html')
 
-@app.route('/test', methods=["GET",'POST'])
-def my_form_post():
-    # email = None
-    
-    text = request.form['text']
-    processed_text = text.upper()
-    print(processed_text)
-
-    return processed_text
-
-@app.route("/v2")
-def v2():
-    return "Hello World!"
 
 if __name__ == "__main__":
     from waitress import serve
