@@ -1,7 +1,7 @@
 # world-market-data
 World Market Data Scraping
 
-Made in Flask  
+Made with Python Framework : Flask  
 
 Scrape the world market data and gives a data 
 
