@@ -8,8 +8,6 @@ Scrape the world market data and gives a data
 Scrape in every 60 mins and store it in txt file 
 
 
-eg : 
- 
 
 ######  install python , pip 
 
