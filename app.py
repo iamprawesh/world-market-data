@@ -155,12 +155,12 @@ def index():
                     ) 
 
     from os import path
-    ifexist = path.exists("data.text")
+    ifexist = path.exists("data.txt")
     print(ifexist)
     print("ifexist")
     try:
         if ifexist:
-            file1 = open("data.text","r+")
+            file1 = open("data.txt","r+")
             # print("exist")
             data = json.load(file1)
             # print(data)
@@ -177,7 +177,7 @@ def index():
             if current > expires:
                 nepse = nepseData()
                 marketList.append(nepse)
-                fileinwite = open("data.text","w")
+                fileinwite = open("data.txt","w")
                 world = worldMarket()
                 print("expired")
                 print("refetching")
@@ -190,7 +190,7 @@ def index():
 
         else:
             print("file not exist")
-            fileinwite = open("data.text","w")
+            fileinwite = open("data.txt","w")
             nepse = nepseData()
             marketList.append(nepse)
             world = worldMarket()
